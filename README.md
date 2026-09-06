@@ -1,132 +1,159 @@
-# Personal site
+# Turborepo starter
 
-A modern, developer-focused personal site showcasing my **projects**, **blog posts** (powered by **MDX**), and **bookmarks** — all built with a strong focus on **performance**, **accessibility**, and **design**.
+This Turborepo starter is maintained by the Turborepo core team.
 
----
+## Using this example
 
-## Table of Contents
+Run the following command:
 
-- [Overview](#overview)
-  - [Features](#features)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My Process](#my-process)
-  - [Built With](#built-with)
-  - [What I Learned](#what-i-learned)
-  - [Continued Development](#continued-development)
-  - [Getting Started](#-getting-started)
-  - [Useful Resources](#useful-resources)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
+```sh
+npx create-turbo@latest
+```
 
----
+## What's inside?
 
-## Overview
+This Turborepo includes the following packages/apps:
 
-### Features
+### Apps and Packages
 
-This site allows users to:
+- `docs`: a [Next.js](https://nextjs.org/) app
+- `web`: another [Next.js](https://nextjs.org/) app
+- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
+- `@repo/eslint-config`: `eslint` configurations (includes `@next/eslint-plugin-next` and `eslint-config-prettier`)
+- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
-- Explore the site in **light and dark mode** (system preference)
-- Read **blog posts** written in **MDX format** with syntax highlighting
-- Browse **projects** with descriptions and live links
-- Explore a **curated list of development resources** (Bookmarks)
+Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-### Screenshot
+### Utilities
 
-![Screenshot of personal site](./public/personal-site-screenshot.png)
+This Turborepo has some additional tools already setup for you:
 
-### Links
+- [TypeScript](https://www.typescriptlang.org/) for static type checking
+- [ESLint](https://eslint.org/) for code linting
+- [Prettier](https://prettier.io) for code formatting
 
-- **Live Site:** [gshukla.in](https://gshukla.in)
-- **Repository:** [https://github.com/heygauravshukla/gshukla.in](https://github.com/heygauravshukla/gshukla.in)
+### Build
 
----
+To build all apps and packages, run the following command:
 
-## My Process
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
 
-### Built With
+```sh
+cd my-turborepo
+turbo build
+```
 
-- **Semantic TSX markup** & mobile-first responsive design
-- **Static Site Generation (SSG)**
-- **Next.js 16 (App Router)** – framework core
-- **React 19** – latest React features
-- **Tailwind CSS v4** – utility-first styling with CSS variables
-- **MDX** – Blog posts with markdown and `rehype-pretty-code` for syntax highlighting
-- **Lucide React** – icon library
-- **pnpm** – Lightning-fast installation speeds and a smarter, safer way to manage dependencies
+Without global `turbo`, use your package manager:
 
----
+```sh
+cd my-turborepo
+npx turbo build
+pnpm exec turbo build
+pnpm exec turbo build
+```
 
-### What I Learned
+You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
 
-- Implementing **MDX** with `rehype-pretty-code` for beautiful syntax highlighting
-- Using **Tailwind CSS v4** with native CSS variables and `@theme` blocks
-- Generating **dynamic sitemaps** for SEO
-- Structuring a **scalable project** with Next.js 16 App Router
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
 
----
+```sh
+turbo build --filter=docs
+```
 
-### Continued Development
+Without global `turbo`:
 
-Planned improvements include:
+```sh
+npx turbo build --filter=docs
+pnpm exec turbo build --filter=docs
+pnpm exec turbo build --filter=docs
+```
 
-- **RSS feed generation** for blog posts
-- **Project filtering** by technology
-- **Search functionality** for blog posts and bookmarks
+### Develop
 
----
+To develop all apps and packages, run the following command:
 
-### Getting Started
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
 
-1. **Clone the repository**
+```sh
+cd my-turborepo
+turbo dev
+```
 
-   ```bash
-   git clone https://github.com/heygauravshukla/gshukla.in.git
-   cd gshukla.in
-   ```
+Without global `turbo`, use your package manager:
 
-2. **Install dependencies**
+```sh
+cd my-turborepo
+npx turbo dev
+pnpm exec turbo dev
+pnpm exec turbo dev
+```
 
-   ```bash
-   pnpm install
-   ```
+You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
 
-3. **Set up environment variables**
-   Create a `.env.local` file at the root with the following variable (optional for dev):
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
 
-   ```env
-   NEXT_PUBLIC_BASE_URL=
-   NEXT_PUBLIC_GA_ID=your_google_analytics_id
-   ```
+```sh
+turbo dev --filter=web
+```
 
-4. **Run the development server**
+Without global `turbo`:
 
-   ```bash
-   pnpm run dev
-   ```
+```sh
+npx turbo dev --filter=web
+pnpm exec turbo dev --filter=web
+pnpm exec turbo dev --filter=web
+```
 
-   Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+### Remote Caching
 
-### Useful Resources
+> [!TIP]
+> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
 
-- [Inter Font GitHub Repo](https://github.com/rsms/inter) – Inter font files & usage guide
-- [IBM Plex Font GitHub Repo](https://github.com/IBM/plex) – IBM Plex font family resources
-- [Squoosh](https://squoosh.app) – Image compression and optimization
-- [og.new](https://og.new) – Dynamic Open Graph image generator
-- [RedKetchup Favicon Generator](https://redketchup.io/favicon-generator) – Favicon creation tool
+Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
 
----
+By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
 
-## Author
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
 
-- **Website:** [gshukla.in](https://gshukla.in)
-- **GitHub:** [@heygauravshukla](https://github.com/heygauravshukla)
-- **Twitter/X:** [@heygauravshukla](https://twitter.com/heygauravshukla)
+```sh
+cd my-turborepo
+turbo login
+```
 
----
+Without global `turbo`, use your package manager:
 
-## Acknowledgments
+```sh
+cd my-turborepo
+npx turbo login
+pnpm exec turbo login
+pnpm exec turbo login
+```
 
-Special thanks to the [Tailwind CSS Docs](https://github.com/tailwindlabs/tailwindcss.com) repository for insights into structure organization.
-The [Spotlight Template](https://tailwindcss.com/plus/templates/spotlight) by Tailwind Labs served as the **initial inspiration** for this site's layout and design.
+This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+
+Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+
+```sh
+turbo link
+```
+
+Without global `turbo`:
+
+```sh
+npx turbo link
+pnpm exec turbo link
+pnpm exec turbo link
+```
+
+## Useful Links
+
+Learn more about the power of Turborepo:
+
+- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
+- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
+- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
+- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
+- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
+- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
