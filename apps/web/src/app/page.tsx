@@ -37,6 +37,11 @@ export default function Home() {
 
           <ul>
             <li>
+              <Link href="/blog/key-value-list-using-subgrid">
+                How to create key-value list using Subgrid
+              </Link>
+            </li>
+            <li>
               <Link href="/blog/transition-from-display-none">
                 How to transition from display none in CSS
               </Link>
